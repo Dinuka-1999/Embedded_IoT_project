@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "author": "Dinuka Sandun",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": -123.63, "left": 53.55, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -143.7,
+      "left": 416.12,
+      "attrs": { "temperature": "36.4", "humidity": "49" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -86.91,
+      "left": -164.34,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 10.6,
+      "left": -30.25,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": 85.25,
+      "left": -173.4,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servo1",
+      "top": -189.62,
+      "left": 200.92,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd2004",
+      "id": "lcd1",
+      "top": 106.49,
+      "left": 286.01,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-ds1307",
+      "id": "rtc1",
+      "top": -247.58,
+      "left": 82.78,
+      "rotate": 270,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "esp:3V3", "dht1:VCC", "red", [ "v0.41", "h56.07" ] ],
+    [ "esp:GND.1", "dht1:GND", "black", [ "h0" ] ],
+    [ "esp:D15", "dht1:SDA", "green", [ "h0" ] ],
+    [ "esp:GND.2", "bz1:1", "black", [ "h0" ] ],
+    [ "bz1:2", "r1:1", "red", [ "v0" ] ],
+    [ "r1:2", "esp:D13", "red", [ "v0" ] ],
+    [ "esp:3V3", "ldr1:VCC", "red", [ "h41.25", "v66.03", "h-197.5" ] ],
+    [ "esp:GND.2", "ldr1:GND", "black", [ "h-32.6", "v81.09" ] ],
+    [ "esp:D34", "ldr1:AO", "green", [ "h-17.64", "v190.92" ] ],
+    [ "servo1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "servo1:PWM", "esp:D18", "green", [ "v28.68", "h-99.49", "v-28.49" ] ],
+    [ "servo1:V+", "esp:3V3", "red", [ "v77.7", "h-128.07" ] ],
+    [ "lcd1:GND", "esp:GND.1", "black", [ "h-45.31", "v-110.8" ] ],
+    [ "esp:VIN", "lcd1:VCC", "red", [ "h-27.93", "v114.87", "h170.48" ] ],
+    [ "lcd1:SDA", "esp:D21", "green", [ "h-75.59", "v-221.21" ] ],
+    [ "lcd1:SCL", "esp:D22", "green", [ "h-113.85", "v-257.5" ] ],
+    [ "rtc1:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "rtc1:5V", "esp:VIN", "red", [ "v0" ] ],
+    [ "rtc1:SDA", "esp:D21", "green", [ "v0" ] ],
+    [ "rtc1:SCL", "esp:D22", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
